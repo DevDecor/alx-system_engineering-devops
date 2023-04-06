@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+#this script copies the specified file to the server
+scp -i $4 $1 $3@$2:~/
