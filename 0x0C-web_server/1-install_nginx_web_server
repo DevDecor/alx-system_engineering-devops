@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+#this script installs engineX
+apt-get install nginx -y
