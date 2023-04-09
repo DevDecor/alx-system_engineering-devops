@@ -4,34 +4,26 @@
 # Serve a page that would return a Hello World string
 #
 # colors
-blue='\e[1;34m'
-brown='\e[0;33m'
-green='\e[1;32m'
-reset='\033[0m'
+sudo apt-get update -y
+sudo apt-get install nginx -y
 
-echo -e "${blue}Updating and installing ${brown}Nginx${blue}.${reset}\n"
-sudo apt-get update -y -qq && \
-	 sudo apt-get install nginx -y
-
-echo -e "\n${blue}Setting up some minor stuff.${reset}\n"
+#echo -e "\n${blue}Setting up some minor stuff.${reset}\n"
 
 # starting nginx service initially
-sudo service nginx start
+#sudo service nginx start
 
 # allowing nginx on the firewall
 sudo ufw allow 'Nginx HTTP'
 
 # Give the user ownership to website files for easy editing of the files
-sudo chown -R "$USER":"$USER" /var/www/html
-sudo chmod -R 755 /var/www
+#sudo chown -R "$USER":"$USER" /var/www/html
+#sudo chmod -R 755 /var/www
 
 # Backup default index file
-cp /var/www/html/index.nginx-debian.html /var/www/html/index.nginx-debian.html.bckp
+#cp /var/www/html/index.nginx-debian.html /var/www/html/index.nginx-debian.html.bckp
 
 # Creating new index file
-echo -e "Hello World!" | dd status=none of=/var/www/html/index.nginx-debian.html
+echo -e "Hello World!" > /var/www/html/index.html
 
 # Restarting nginx server
-sudo service nginx restart
-
-echo -e "\n${green}Completed.${reset} ✅\n"
+service nginx restart
