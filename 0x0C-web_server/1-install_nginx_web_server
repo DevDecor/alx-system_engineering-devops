@@ -23,7 +23,7 @@ ufw allow 'Nginx HTTP'
 #cp /var/www/html/index.nginx-debian.html /var/www/html/index.nginx-debian.html.bckp
 
 # Creating new index file
-echo -e "Hello World!" > /var/www/html/index.html
+echo "Hello World!" > /var/www/html/index.html
 
 # Restarting nginx server
-service nginx restart
+service nginx start
