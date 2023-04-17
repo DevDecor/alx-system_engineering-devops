@@ -1,29 +1,11 @@
 #!/usr/bin/env bash
-# Configures a new ubuntu machine by installing
-# Nginx where it should be listening on port 80
-# Serve a page that would return a Hello World string
-#
-# colors
-apt-get update -y
-apt-get install nginx -y
+# Script that setup a nginx web server on our server.
 
-#echo -e "\n${blue}Setting up some minor stuff.${reset}\n"
+sudo apt update -y && apt upgrade -y
+sudo apt install nginx -y
 
-# starting nginx service initially
-#sudo service nginx start
+# Modify the default Nginx configuration file to include the "Hello World!" message
+echo "Hello World!" | sudo tee /var/www/html/index.html > /dev/null
 
-# allowing nginx on the firewall
-ufw allow 'Nginx HTTP'
-
-# Give the user ownership to website files for easy editing of the files
-#sudo chown -R "$USER":"$USER" /var/www/html
-#sudo chmod -R 755 /var/www
-
-# Backup default index file
-#cp /var/www/html/index.nginx-debian.html /var/www/html/index.nginx-debian.html.bckp
-
-# Creating new index file
-echo "Hello World!" > /var/www/html/index.html
-
-# Restarting nginx server
-service nginx start
+# Test the Nginx configuration and reload the service
+sudo nginx -t && sudo /etc/init.d/nginx reload
