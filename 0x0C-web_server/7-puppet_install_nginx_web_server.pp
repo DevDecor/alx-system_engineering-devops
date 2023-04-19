@@ -9,7 +9,7 @@ package { 'nginx':
 file { '/var/www/html/index.html':
   ensure  => present,
   path    => '/var/www/html/index.html',
-  content => 'Hello World'
+  content => 'Hello World!'
 }
 
 # Redirect to fabulous Rick Astley page
