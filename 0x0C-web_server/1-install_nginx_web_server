@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Script that setup a nginx web server on our server.
 
-sudo apt update -y && apt upgrade -y
+sudo apt update -y && sudo apt upgrade -y
 sudo apt install nginx -y
 
 # Modify the default Nginx configuration file to include the "Hello World!" message
