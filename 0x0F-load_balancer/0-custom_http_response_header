@@ -1,0 +1,21 @@
+#!/bin/env bash
+# configures a brand new Ubuntu machine to the requirements
+# Script that setup a nginx web server on our server + redirection + 404.
+
+apt update -y && apt upgrade -y
+apt install nginx -y
+apt install shellcheck -y
+
+echo "disable=SC2154" >> ~/.shellcheckrc
+# Index page
+echo "Holberton School" >/var/www/html/index.nginx-debian.html
+
+# Redirect to fabulous Rick Astley page
+sed -i '/listen \[::\]:80 default_server;/a\        rewrite ^\/redirect_me https://www.youtube.com/watch?v=dQw4w9WgXcQ permanent;' /etc/nginx/sites-available/default
+
+# 404 Page not Found
+echo "Ceci n'est pas une page" >/var/www/html/404.html
+sed -i 'permanent;$/a\        error_page 404 /404.html;' /etc/nginx/sites-available/default
+
+sed -i "/listen \[::\]:80 default_server;/a\        add_header X-Served-By $(hostnale)" /etc/nginx/sites-available/default
+service nginx restart
