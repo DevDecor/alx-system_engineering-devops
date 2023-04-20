@@ -1,21 +1,11 @@
-#!/bin/env bash
-# configures a brand new Ubuntu machine to the requirements
-# Script that setup a nginx web server on our server + redirection + 404.
+#!/usr/bin/env bash
+# Bash script that setup a nginx web server on our server, redirection, 404, header
 
-apt update -y && apt upgrade -y
-apt install nginx -y
-apt install shellcheck -y
+sudo apt-get -y update
+sudo apt-get -y install nginx
 
-echo "disable=SC2154" >> ~/.shellcheckrc
-# Index page
-echo "Holberton School" >/var/www/html/index.nginx-debian.html
+repl_str="\tlocation \/ {\n\t\tadd_header X-Served-By $HOSTNAME;"
+sudo sed -i "s/\tlocation \/ {/$repl_str/" /etc/nginx/sites-available/default
 
-# Redirect to fabulous Rick Astley page
-sed -i '/listen \[::\]:80 default_server;/a\        rewrite ^\/redirect_me https://www.youtube.com/watch?v=dQw4w9WgXcQ permanent;' /etc/nginx/sites-available/default
+sudo service nginx restart
 
-# 404 Page not Found
-echo "Ceci n'est pas une page" >/var/www/html/404.html
-sed -i 'permanent;$/a\        error_page 404 /404.html;' /etc/nginx/sites-available/default
-
-sed -i "/listen \[::\]:80 default_server;/a\        add_header X-Served-By $(hostnale)" /etc/nginx/sites-available/default
-service nginx restart
