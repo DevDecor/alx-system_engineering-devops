@@ -2,14 +2,14 @@
 # this script configures the load balancer
 sudo apt-get -y update
 sudo apt-get -y upgrade
-apt-get install --no-install-recommends software-properties-common -y
-add-apt-repository ppa:vbernat/haproxy-2.7
-apt-get install haproxy -y
+sudo apt-get install --no-install-recommends software-properties-common -y
+sudo add-apt-repository ppa:vbernat/haproxy-2.7
+sudo apt-get install haproxy -y
 echo "ENABLED=1" >> /etc/default/haproxy
 # sudo mv /etc/haproxy/haproxy.cfg{,.original}
 # sudo touch /etc/haproxy/haproxy.cfg 
 
-printf %s "\nfrontend apps_server
+sudo printf %s "\nfrontend apps_server
 	bind *:80
 	mode http
 	default_backend apps
@@ -17,6 +17,6 @@ backend apps
 	mode http
 	balance roundrobin
 	server 144185-web-01 34.229.189.127:80  check
-	server 144185-web-02 54.234.70.193:80   check" >> /etc/haproxy/haproxy.cfg
+	server 144185-web-02 54.234.70.193:80   check" | tee -a /etc/haproxy/haproxy.cfg
 
 sudo service haproxy restart
