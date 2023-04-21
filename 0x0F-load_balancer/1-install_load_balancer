@@ -17,6 +17,6 @@ backend apps
 	mode http
 	balance roundrobin
 	server 144185-web-01 34.229.189.127:80  check
-	server 144185-web-02 54.234.70.193:80   check" | tee -a /etc/haproxy/haproxy.cfg
+	server 144185-web-02 54.234.70.193:80   check" | sudo tee -a /etc/haproxy/haproxy.cfg
 
 sudo service haproxy restart
