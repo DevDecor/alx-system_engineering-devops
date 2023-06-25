@@ -1,4 +1,7 @@
 # this manifest script kills the killmenow
-exec { 'Kill the process':
-  command => 'pkill -f killmenow'
+exec { 'kill_killmenow_process':
+  command  => 'pkill -f killmenow',
+  provider => shell,
+  onlyif   => 'pgrep -f killmenow',
 }
+
