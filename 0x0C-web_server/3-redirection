@@ -2,11 +2,12 @@
 # Script that configure Nginx server so that
 # /redirect_me is redirecting to another page.
 
-sudo apt update -y && apt upgrade -y
-sudo apt install nginx -y
+apt update -y && apt upgrade -y
+apt install nginx -y
 
 # Index page
-echo "Hello World!" >/var/www/html/index.nginx-debian.html
+# echo "Hello World!" >/var/www/html/index.nginx-debian.html
+echo "Hello World!" | sudo tee /var/www/html/index.html > /dev/null
 
 # Redirect to fabulous Rick Astley page
 sed -i '/listen \[::\]:80 default_server;/a\        rewrite ^\/redirect_me https://www.youtube.com/watch?v=dQw4w9WgXcQ permanent;' /etc/nginx/sites-available/default
