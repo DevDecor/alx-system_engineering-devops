@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+# This script runs as another user
+# Check if a username is provided as an argument
+if [ $# -ne 1 ]; then
+  echo "Usage: $0 <username>"
+  exit 1
+fi
+
+# Get the username from the argument
+username=$1
+
+# Use 'su' to switch to the specified user and run 'whoami'
+su -c 'whoami' $username
+
