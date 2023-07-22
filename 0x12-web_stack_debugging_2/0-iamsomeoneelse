@@ -7,8 +7,8 @@ if [ $# -ne 1 ]; then
 fi
 
 # Get the username from the argument
-username=$1
+username="$1"
 
 # Use 'su' to switch to the specified user and run 'whoami'
-su -c 'whoami' $username
+su -c 'whoami' "$username"
 
