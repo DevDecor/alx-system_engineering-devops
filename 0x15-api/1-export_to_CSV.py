@@ -12,6 +12,8 @@ if __name__ == "__main__":
     userId = res[0]['userId']
     with open(f"{userId}.csv", 'w', encoding="utf-8") as file:
         for todo in res:
-            temp = f"{userId},{name},{todo['completed']},{todo['title']}\n"
+            completed = todo['completed']
+            title = todo['title']
+            temp = f"\"{userId}\",\"{name}\",\"{completed}\",\"{title}\"\n"
             file.write(temp)
         file.close()
