@@ -11,8 +11,7 @@ def number_of_subscribers(subreddit) -> int:
     url = f'https://www.reddit.com/r/{subreddit}/about.json'
 
     try:
-        response = requests.get(url, headers=headers, allow_redirects=True)
-        # response.status_code == 
+        response = requests.get(url, headers=headers, allow_redirects=False)
         data = response.json()
 
         if data and 'subscribers' in data['data']:
