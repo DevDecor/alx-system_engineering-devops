@@ -1,11 +1,10 @@
 #!/usr/bin/python3
 """Fetches the number of subscribers to a subreddit"""
 import requests
-import sys
 
 
 def number_of_subscribers(subreddit):
-    # Set a custom User-Agent to avoid Too Many Requests errors
+    """Set a custom User-Agent to avoid Too Many Requests errors"""
     headers = {'User-Agent': 'MyRedditBot/1.0'}
 
     # Construct the URL for the subreddit's about.json endpoint
