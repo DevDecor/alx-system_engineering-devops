@@ -21,5 +21,5 @@ def top_ten(subreddit) -> int:
             [print(post["data"]["title"]) for post in posts]
         else:
             print(None)
-    except requests.RequestException:
+    except Exception:
         print(None)
