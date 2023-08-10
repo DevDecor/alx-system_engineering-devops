@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-""""""
+"""Fetches the number of subscribers to a subreddit"""
 import requests
 import sys
 
