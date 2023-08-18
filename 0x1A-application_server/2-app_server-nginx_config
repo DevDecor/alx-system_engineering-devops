@@ -1,0 +1,26 @@
+server {
+    listen 80 default_server;
+    listen [::]:80 default_server;
+
+    
+    root /var/www/html;
+
+    index index.html index.htm index.nginx-debian.html;
+
+    server_name _;
+
+    # location /hbnb_static {
+    #     alias /data/web_static/releases/test/;
+    #     index index.html;
+    # }
+
+    location /airbnb-onepage {
+        include proxy_params;
+        proxy_pass http://unix:/home/ubuntu/AirBnB_clone_v2/onepage.sock;
+    }
+
+    location / {
+            try_files $uri $uri/ =404;
+    }
+
+}
