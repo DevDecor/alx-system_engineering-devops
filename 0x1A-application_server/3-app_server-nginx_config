@@ -1,0 +1,8 @@
+server {
+  listen 80;
+  server_name _;
+
+  location ~ /airbnb-dynamic/number_odd_or_even/(\d+) {
+    proxy_pass http://localhost:5001;
+  }
+}
